@@ -11,7 +11,7 @@ import CoreLocation
 import Alamofire
 import SwiftyJSON
 
-class WeatherViewController: UIViewController, CLLocationManagerDelegate {
+class WeatherViewController: UIViewController, CLLocationManagerDelegate, ChangeCityDelegate {
 // class conforms to CLL...ManagerDelegate so can be set up as delegate
 // which gives the WeatherVC access to data from LocationManager
     //Constants
@@ -151,12 +151,20 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     
     //Write the userEnteredANewCityName Delegate method here:
+    // needs this to conform to protocol
+    func userEnteredANewCityName(city: String) {
+        print(city)
+    }
     
 
     
     //Write the PrepareForSegue Method here
-    
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "changeCityName" {
+            let destinationVC = segue.destination as! ChangeCityViewController
+            destinationVC.delegate = self
+        }
+    }
     
     
     
