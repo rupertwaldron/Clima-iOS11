@@ -23,10 +23,7 @@ class WeatherViewController: UIViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
 // weatherViewController will now deal with location stuff
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
+        getHomeLocation()
     }
     //MARK: - Networking
     /***************************************************************/
@@ -109,6 +106,19 @@ class WeatherViewController: UIViewController,
             destinationVC.delegate = self
         }
     }
+    
+    func getHomeLocation() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+    }
+    
+    @IBAction func homeButtonPressed(_ sender: Any) {
+        getHomeLocation()
+    }
+    
+    
 }
 
 
